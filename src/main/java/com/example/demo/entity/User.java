@@ -8,9 +8,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 
 @Entity
 @Table(name="user")
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +28,8 @@ public class User {
     @NotBlank
     private String role = "USER";
     public User(){}
-    public User(String name, String email, String password, String role) {
+    public User(long id, String name, String email, String password, String role) {
+        
         this.name = name;
         this.email = email;
         this.password = password;
