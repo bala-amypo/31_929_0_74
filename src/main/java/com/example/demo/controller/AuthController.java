@@ -22,7 +22,7 @@ public class AuthController {
             User createdUser = userService.register(user);
             return ResponseEntity.status(200).body(createdUser);
         } catch (RuntimeException e) {
-            return ResponseEntity.status().build();
+            return ResponseEntity.status(400).build();
         }
     }
 
