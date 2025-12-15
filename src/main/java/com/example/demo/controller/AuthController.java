@@ -20,7 +20,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody User user) {
         try {
-            User createdUser = userService.registerUser(user);
+            User createdUser = userService.register(user);
             return ResponseEntity.ok(createdUser);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
@@ -34,7 +34,7 @@ public class AuthController {
         String password = loginData.get("password");
 
         try {
-            User user = userService.loginUser(email, password);
+            User user = userService.login(email, password);
             return ResponseEntity.ok(Map.of("message", "Login successful", "userId", user.getId()));
         } catch (RuntimeException e) {
             return ResponseEntity.status(401).body(Map.of("error", "Invalid Credentials"));
