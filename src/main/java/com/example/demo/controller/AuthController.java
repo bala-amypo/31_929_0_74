@@ -16,28 +16,15 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    // POST: http://localhost:8080/auth/register
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody User user) {
+    public ResponseEntity<User> register(@Valid @RequestBody User user) {
         try {
             User createdUser = userService.register(user);
-            return ResponseEntity.ok(createdUser);
+            return ResponseEntity.status(200).body(createdUser);
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+            return ResponseEntity.status().build();
         }
     }
 
-    // POST: http://localhost:8080/auth/login
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
-        String email = loginData.get("email");
-        String password = loginData.get("password");
-
-        try {
-            User user = userService.login(email, password);
-            return ResponseEntity.ok(Map.of("message", "Login successful", "userId", user.getId()));
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(401).body(Map.of("error", "Invalid Credentials"));
-        }
-    }
+   
 }
