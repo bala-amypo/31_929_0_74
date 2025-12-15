@@ -24,7 +24,7 @@ public class User {
     @NotBlank
     private String password;
     @NotBlank
-    private String role;
+    private String role = "USER";
     public User(){}
     public User(String name, String email, String password, String role) {
         this.name = name;
