@@ -18,7 +18,7 @@ public class AuthController {
     public ResponseEntity<User> register(@Valid @RequestBody User user) {
         try {
             User createdUser = userService.register(user);
-            return ResponseEntity.status(200).body(createdUser);
+            return ResponseEntity.status(201).body(createdUser);
         } catch (RuntimeException e) {
             return ResponseEntity.status(400).build();
         }
