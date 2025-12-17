@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
-@Configuration
+@Configuration  
 public class SwaggerConfig {
 
     @Bean
@@ -14,7 +14,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 // You need to change the port as per your server
                 .servers(List.of(
-                        new Server().url("https://9002.pro604cr.amypo.ai")
+                        new Server().url("https://9010.devs.amypo.ai")
                 ));
         }
 }
